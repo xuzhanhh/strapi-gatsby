@@ -5,7 +5,7 @@ import Layout from "../components/layout"
 import Image from "gatsby-image"
 import SEO from "../components/seo"
 import ReactMarkdown from "react-markdown"
-import "../styles/global.css"  
+import "../styles/global.css"
 const IndexPage = ({ data }) => {
   console.log(data)
   return (
@@ -19,7 +19,7 @@ const IndexPage = ({ data }) => {
             <h2>
               <Link to={`/${document.node.id}`}>{document.node.title}</Link>
             </h2>
-            <Image fixed={document.node.image.childImageSharp.fixed} />
+            {document.node.image && <Image fixed={document.node.image.childImageSharp.fixed} />}
             <ReactMarkdown
               source={document.node.content.substring(0, 500).concat("...")}
               transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
