@@ -24,6 +24,7 @@ const IndexPage = ({ data }) => {
               source={document.node.content.substring(0, 500).concat("...")}
               transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
               className="indexArticle"
+              escapeHtml={false}
             />
           </li>
         ))}
