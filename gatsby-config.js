@@ -1,10 +1,15 @@
 module.exports = {
   siteMetadata: {
-    title: 'My super blog',
-    description: 'Gatsby blog with Strapi',
-    author: 'Strapi team'
+    titleAlt: 'My super blog',
+    headline: 'My super blog',
+    url: 'My super blog',
+    description: 'My super blog',
+    author: 'Strapi team',
+    title: 'mimigon'
   },
   plugins: [
+    'gatsby-plugin-theme-ui',
+    'gatsby-plugin-typescript',
     'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-source-filesystem`,
@@ -17,8 +22,8 @@ module.exports = {
       resolve: 'gatsby-source-strapi',
       options: {
         apiURL: process.env.DEPLOY_URL
-        ? "https://blooming-escarpment-52249.herokuapp.com"
-        : "http://localhost:1337",
+          ? "https://blooming-escarpment-52249.herokuapp.com"
+          : "http://localhost:1337",
         contentTypes: [ // List of the Content Types you want to be able to request from Gatsby.
           'article',
           'user'
