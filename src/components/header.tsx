@@ -21,7 +21,7 @@ const Header = ({ meta, nav }: MetaType) => {
     setColorMode(isDark ? `light` : `dark`)
   }
   // const navEmpty = true
-  const navEmpty = nav.length === 0
+  const navEmpty = nav?.length == 0
 
   return (
     <ThemeHeader>

@@ -35,11 +35,11 @@ const NewLayout = ({ children, className }: LayoutProps) => {
           },
         })}
       />
-      <div style={{minHeight: '100vh'}}>
-      {/* <SEO /> */}
-      <Header meta={meta} nav={nav} />
-      <Main className={className}>{children}</Main>
-      <Footer />
+      <div style={{ minHeight: '100vh' }}>
+        {/* <SEO /> */}
+        <Header meta={meta} nav={nav} />
+        <Main className={className}>{children}</Main>
+        <Footer />
       </div>
     </Styled.root>
   )
