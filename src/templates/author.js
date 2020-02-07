@@ -6,7 +6,7 @@ const UserTemplate = ({ data }) => (
   <Layout>
     <h1>{data.strapiUser.username}</h1>
     <ul>
-      {data.strapiUser.articales.map(article => (
+      {data.strapiUser.articles.map(article => (
         <li key={article.id}>
           <h2>
             <Link to={`/Article_${article.id}`}>{article.title}</Link>
@@ -30,7 +30,7 @@ export const query = graphql`
     strapiUser(id: { eq: $id }) {
       id
       username
-      articales {
+      articles {
         id
         title
         content

@@ -5,7 +5,7 @@ import { Link } from "gatsby"
 type Props = {
   nav: {
     title: string
-    slug: string
+    id: string
   }[]
 }
 
@@ -26,8 +26,8 @@ const Navigation = ({ nav }: Props) => (
       <Styled.a
         as={Link}
         sx={{ color: `text`, ":hover": { color: `primary`, textDecoration: `none` } }}
-        key={n.slug}
-        to={n.slug}
+        key={n.id}
+        to={n.title}
       >
         {n.title}
       </Styled.a>

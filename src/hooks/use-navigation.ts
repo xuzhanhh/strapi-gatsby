@@ -1,42 +1,32 @@
 import { graphql, useStaticQuery } from "gatsby"
 
 type Props = {
-  allSitePage: {
+  allStrapiSection: {
     edges: {
-      path: string
+      node: {
+        id: string;
+        title: string;
+      }
     }[]
   }
 }
 
 const useNavigation = () => {
-  // const data = useStaticQuery<Props>(graphql`
-  //   query {
-  //     allSitePage {
-  //   edges {
-  //     node {
-  //       id
-  //       path
-  //       context {
-  //         id
-  //       }
-  //     }
-  //   }
-  // }
-  //   }
-  // `)
+  const data = useStaticQuery<Props>(graphql`
+    query MyQuery {
+      allStrapiSection {
+        edges {
+          node {
+            id
+            title
+          }
+        }
+      }
+    }
+  `)
   // return []
-  // return data.allSitePage.edges
-  return [  {
-    title: '技术',
-    path: '/fgn'
-  },{
-    title: '霏gn',
-    path: '/fgn'
-  },
-  {
-    title: '游记',
-    path: '/fgn'
-  }]
+  return data.allStrapiSection.edges.map(item => item.node)
+
 }
 
 export default useNavigation

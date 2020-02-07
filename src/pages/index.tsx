@@ -42,12 +42,16 @@ export const pageQuery = graphql`
       edges {
         node {
           id
+          strapiId
           image {
             childImageSharp {
               fluid(maxWidth: 960) {
                 ...GatsbyImageSharpFluid
               }
             }
+          }
+          section {
+            title
           }
           title
           content
