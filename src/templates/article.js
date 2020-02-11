@@ -18,6 +18,12 @@ import Hero from '../components/hero';
 //     />
 //   </Layout>
 // )
+// require('string.prototype.matchall')
+String.prototype.replaceAll = function (search, replacement) {
+  var target = this;
+  return target.replace(new RegExp(search, 'g'), replacement);
+};
+
 const Page = ({ data }) => {
   const titleProps = useSpring({
     config: config.slow,
@@ -25,7 +31,15 @@ const Page = ({ data }) => {
     to: { opacity: 1, transform: `translate3d(0, 0, 0)` },
   })
   const contentProps = useSpring({ config: config.slow, delay: 1000, from: { opacity: 0 }, to: { opacity: 1 } })
-  console.log(data.strapiArticle);
+  function Image(props) {
+    return <img {...props} style={{ maxWidth: '100%' }} />
+  }
+  const transformArticle = (data) => {
+    const ret = data.replaceAll(/<img src=\"https:\/\/res.cloudinary.com\/dfafucj5l\/image\/upload\/v\d+\/ac\/(.*?).png" \/>/, (...data) => {
+      return data[0].substr(0, data[0].length-2) + `style="width:70px;" />`
+    })
+    return ret
+  }
   return (
     <Layout>
       {data.strapiArticle.image && <Hero image={data.strapiArticle.image.childImageSharp.fluid} slim >
@@ -51,7 +65,8 @@ const Page = ({ data }) => {
       <Container>
         <animated.div style={contentProps}>
           <ReactMarkdown
-            source={data.strapiArticle.content}
+            renderers={{ image: Image }}
+            source={transformArticle(data.strapiArticle.content)}
             transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
             escapeHtml={false}
           />
