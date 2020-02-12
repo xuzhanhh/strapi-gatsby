@@ -34,7 +34,7 @@ const CodeBlock = (props) => {
   const [colorMode, setColorMode] = useColorMode()
   const isDark = colorMode === `dark`
   return (
-    <SyntaxHighlighter language={language} style={isDark? atomDark: undefined}>
+    <SyntaxHighlighter language={language || 'java'} style={isDark ? atomDark : undefined}>
       {value}
     </SyntaxHighlighter>
   );
