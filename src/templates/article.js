@@ -37,12 +37,19 @@ const Page = ({ data }) => {
   }
   const transformArticle = (data) => {
     const ret = data.replaceAll(/<img src=\"https:\/\/res.cloudinary.com\/dfafucj5l\/image\/upload\/v\d+\/ac\/(.*?).png" \/>/, (...data) => {
-      return data[0].substr(0, data[0].length-2) + `style="width:70px;" />`
+      return data[0].substr(0, data[0].length - 2) + `style="width:70px;" />`
     })
     return ret
   }
   return (
-    <Layout>
+    <Layout
+      sx={{
+        display: `grid`,
+        gridTemplateColumns: `repeat(auto-fit, minmax(280px, 1fr))`,
+        width: `100%`,
+        // height: '100vh'
+      }}
+    >
       {data.strapiArticle.image && <Hero image={data.strapiArticle.image.childImageSharp.fluid} slim >
         <Flex
           sx={{
