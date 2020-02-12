@@ -7,6 +7,7 @@ import ReactMarkdown from "react-markdown"
 import { animated, useSpring, config } from "react-spring"
 import { Container, Styled, jsx, Flex } from "theme-ui"
 import Hero from '../components/hero';
+import CodeBlock from '../components/code-block';
 import "../styles/global.css";
 // const ArticleTemplate = ({ data }) => (
 //   <Layout>
@@ -72,6 +73,7 @@ const Page = ({ data }) => {
             source={transformArticle(data.strapiArticle.content)}
             transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
             escapeHtml={false}
+            renderers={{ code: CodeBlock }}
           />
         </animated.div>
       </Container>
