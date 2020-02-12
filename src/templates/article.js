@@ -7,6 +7,7 @@ import ReactMarkdown from "react-markdown"
 import { animated, useSpring, config } from "react-spring"
 import { Container, Styled, jsx, Flex } from "theme-ui"
 import Hero from '../components/hero';
+import "../styles/global.css";
 // const ArticleTemplate = ({ data }) => (
 //   <Layout>
 //     <h1>{data.strapiArticle.title}</h1>
@@ -43,12 +44,6 @@ const Page = ({ data }) => {
   }
   return (
     <Layout
-      sx={{
-        display: `grid`,
-        gridTemplateColumns: `repeat(auto-fit, minmax(280px, 1fr))`,
-        width: `100%`,
-        // height: '100vh'
-      }}
     >
       {data.strapiArticle.image && <Hero image={data.strapiArticle.image.childImageSharp.fluid} slim >
         <Flex
