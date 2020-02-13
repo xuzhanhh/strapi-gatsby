@@ -10,6 +10,8 @@ import Hero from '../components/hero';
 import CodeBlock from '../components/code-block';
 import "../styles/global.css";
 import { getAverageRGBFromImgsrc, rgbToHex } from '../utils'
+import { borderColor } from 'polished'
+import { tailwind } from "@theme-ui/presets";
 // const ArticleTemplate = ({ data }) => (
 //   <Layout>
 //     <h1>{data.strapiArticle.title}</h1>
@@ -46,11 +48,11 @@ const Page = ({ data }) => {
     })
     return ret
   }
-
+  console.log(data)
   const [bgColor, setBgColor] = React.useState(null);
-  React.useEffect(()=>{
-    if(data.strapiArticle.image) {
-      getAverageRGBFromImgsrc(data.strapiArticle.image.childImageSharp.fluid.src).then(data => {setBgColor(`#${rgbToHex(data.r)}${rgbToHex(data.g)}${rgbToHex(data.b)}`)})
+  React.useEffect(() => {
+    if (data.strapiArticle.image) {
+      getAverageRGBFromImgsrc(data.strapiArticle.image.childImageSharp.fluid.src).then(data => { setBgColor(`#${rgbToHex(data.r)}${rgbToHex(data.g)}${rgbToHex(data.b)}`) })
     }
   }, [])
   return (
@@ -71,7 +73,27 @@ const Page = ({ data }) => {
           }}
         >
           <animated.div style={titleProps}>
+            <div
+              sx={{
+                // borderRadius: 5,
+                // padding: '10px 30px',
+                // backgroundColor: isDark ? tailwind.colors.gray[7] : tailwind.colors.gray[1],
+                // border: '1px solid',
+                // borderColor: 'primary'
+                // boxShadow: '0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -2px rgba(0,0,0,.05)'
+              }}
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              {
+                data.strapiArticle.author.avatar && <Img style={{ width: 70, height: 70, borderRadius: 9999 }} fixed={data.strapiArticle.author.avatar.childImageSharp.fixed} />
+              }
+              {/* <div style={{ display: 'flex', flexDirection: 'column', marginLeft: 20 }}>
+                <div>{data.strapiArticle.author.username}</div>
+                <i>{data.strapiArticle.author.description}</i>
+              </div> */}
+
+            </div>
             <Styled.h1>{data.strapiArticle.title}</Styled.h1>
+
           </animated.div>
         </Flex>
       </Hero>
@@ -107,6 +129,17 @@ export const query = graphql`
       author {
         id
         username
+        description
+        avatar {
+          childImageSharp {
+            fluid(maxWidth: 960) {
+              ...GatsbyImageSharpFluid
+            }
+            fixed {
+              ...GatsbyImageSharpFixed
+            }
+          }
+        }
       }
     }
   }

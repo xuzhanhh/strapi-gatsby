@@ -19,7 +19,7 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-source-strapi',
+      resolve: '@xuzhanhh/gatsby-source-strapi',
       options: {
         apiURL: process.env.DEPLOY_URL
           ? "http://3.113.13.44:1337"
