@@ -5,7 +5,7 @@ import Img from 'gatsby-image'
 import Layout from '../components/new-layout'
 import ReactMarkdown from "react-markdown"
 import { animated, useSpring, config } from "react-spring"
-import { Container, Styled, jsx, Flex } from "theme-ui"
+import { Container, Styled, jsx, Flex, useColorMode } from "theme-ui"
 import Hero from '../components/hero';
 import CodeBlock from '../components/code-block';
 import "../styles/global.css";
@@ -28,6 +28,8 @@ String.prototype.replaceAll = function (search, replacement) {
 };
 
 const Page = ({ data }) => {
+  const [colorMode, setColorMode] = useColorMode()
+  const isDark = colorMode === `dark`
   const titleProps = useSpring({
     config: config.slow,
     from: { opacity: 0, transform: `translate3d(0, -30px, 0)` },
@@ -39,7 +41,7 @@ const Page = ({ data }) => {
   }
   const transformArticle = (data) => {
     const ret = data.replaceAll(/<img src=\"https:\/\/res.cloudinary.com\/dfafucj5l\/image\/upload\/v\d+\/ac\/(.*?).png" \/>/, (...data) => {
-      return data[0].substr(0, data[0].length - 2) + `style="width:70px;" />`
+      return data[0].substr(0, data[0].length - 2) + `style="width:70px; filter:invert(${isDark ? 0.9 : 0})" />`
     })
     return ret
   }
