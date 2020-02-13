@@ -10,7 +10,7 @@ const defaultProps = {
 
 const Hero = ({ children, color, image, slim }) => (
   <section
-   sx={{
+    sx={{
       position: `relative`,
       height: slim ? [`400px`, `500px`] : [`500px`, `600px`, `700px`, `40vw`],
       maxHeight: `1200px`,
@@ -18,8 +18,8 @@ const Hero = ({ children, color, image, slim }) => (
       overflow: `hidden`,
     }}
   >
-    <BGImage color={'#3b486e'} slim={slim}>
-    {/* <BGImage color={color} slim={slim}> */}
+    <BGImage color={color || '#3b486e'} slim={slim}>
+      {/* <BGImage color={color} slim={slim}> */}
       <Img fluid={image} />
     </BGImage>
     {children}

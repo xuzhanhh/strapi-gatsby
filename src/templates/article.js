@@ -9,6 +9,7 @@ import { Container, Styled, jsx, Flex, useColorMode } from "theme-ui"
 import Hero from '../components/hero';
 import CodeBlock from '../components/code-block';
 import "../styles/global.css";
+import { getAverageRGBFromImgsrc, rgbToHex } from '../utils'
 // const ArticleTemplate = ({ data }) => (
 //   <Layout>
 //     <h1>{data.strapiArticle.title}</h1>
@@ -45,10 +46,17 @@ const Page = ({ data }) => {
     })
     return ret
   }
+
+  const [bgColor, setBgColor] = React.useState(null);
+  React.useEffect(()=>{
+    if(data.strapiArticle.image) {
+      getAverageRGBFromImgsrc(data.strapiArticle.image.childImageSharp.fluid.src).then(data => {setBgColor(`#${rgbToHex(data.r)}${rgbToHex(data.g)}${rgbToHex(data.b)}`)})
+    }
+  }, [])
   return (
     <Layout
     >
-      {data.strapiArticle.image && <Hero image={data.strapiArticle.image.childImageSharp.fluid} slim >
+      {data.strapiArticle.image && <Hero image={data.strapiArticle.image.childImageSharp.fluid} slim color={bgColor} >
         <Flex
           sx={{
             position: `absolute`,

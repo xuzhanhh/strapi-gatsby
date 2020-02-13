@@ -4,7 +4,8 @@ import Img from "gatsby-image"
 import { Link } from "gatsby"
 import { animated } from "react-spring"
 import { ChildImageSharp } from "../types"
-
+import * as React from 'react';
+import { getAverageRGBFromImgsrc, rgbToHex } from '../utils';
 type Props = {
   node: {
     color: string
@@ -18,7 +19,14 @@ type Props = {
 }
 
 const ProjectItem = ({ node, style }: Props) => {
-  console.log(node.image && node.image.childImageSharp.fluid)
+  // console.log(node.image && node.image.childImageSharp.fluid)
+  const [bgColor, setBgColor] = React.useState(null);
+  React.useEffect(()=>{
+    if(node.image) {
+      getAverageRGBFromImgsrc(node.image.childImageSharp.fluid.src).then(data => {setBgColor(`#${rgbToHex(data.r)}${rgbToHex(data.g)}${rgbToHex(data.b)}`)})
+    }
+  }, [])
+
   return (
     <animated.div
       sx={{
@@ -94,7 +102,7 @@ const ProjectItem = ({ node, style }: Props) => {
           />
           <div
             sx={{
-              backgroundColor: '#bdeefe',
+              backgroundColor: bgColor || '#bdeefe',
               height: `100%`,
               left: 0,
               position: `absolute`,
