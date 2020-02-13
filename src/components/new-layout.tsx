@@ -1,6 +1,6 @@
 import React from "react"
 import { Global } from "@emotion/core"
-import { Main, css, Styled } from "theme-ui"
+import { Main, css, Styled, useColorMode } from "theme-ui"
 import useSiteMetadata from "../hooks/use-site-metadata"
 import useNavigation from "../hooks/use-navigation"
 import Footer from "./footer"
@@ -12,7 +12,8 @@ type LayoutProps = { children: React.ReactNode; className?: string }
 const NewLayout = ({ children, className }: LayoutProps) => {
   const meta = useSiteMetadata()
   const nav = useNavigation()
-
+  const [colorMode, setColorMode] = useColorMode()
+  const isDark = colorMode === `dark`
   return (
     <Styled.root data-testid="theme-root">
       <Global
@@ -29,6 +30,9 @@ const NewLayout = ({ children, className }: LayoutProps) => {
           "::selection": {
             backgroundColor: `primary`,
             color: `background`,
+          },
+          hr: {
+            background: isDark? 'hsla(100, 0%, 62%, 0.8)': 'hsla(0, 0%, 0%, 0.2)',
           },
           a: {
             transition: `all 0.3s ease-in-out`,

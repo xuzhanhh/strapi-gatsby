@@ -18,6 +18,7 @@ type Props = {
 }
 
 const ProjectItem = ({ node, style }: Props) => {
+  console.log(node.image && node.image.childImageSharp.fluid)
   return (
     <animated.div
       sx={{
