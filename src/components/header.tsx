@@ -3,7 +3,7 @@ import { Header as ThemeHeader, jsx, useColorMode, Styled } from "theme-ui"
 import { Link } from "gatsby"
 import Navigation from "./navigation"
 import SocialLinks from "./social-links"
-
+import Logo from '../assets/mimigon.png';
 type MetaType = {
   meta: {
     [key: string]: string
@@ -39,10 +39,10 @@ const Header = ({ meta, nav }: MetaType) => {
         <Styled.a
           aria-label={`${meta.title}, Back to homepage`}
           as={Link}
-          sx={{ color: `text`, ":hover": { color: `primary`, textDecoration: `none` } }}
+          sx={{ display: 'flex', color: `text`, ":hover": { color: `primary`, textDecoration: `none` } }}
           to="/"
         >
-          {meta.title}
+          {meta.title}<img src={Logo} style={{ width: 50, marginBottom: 0 }} />
         </Styled.a>
       </div>
       <div

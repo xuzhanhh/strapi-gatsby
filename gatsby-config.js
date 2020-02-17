@@ -5,7 +5,7 @@ module.exports = {
     url: 'My super blog',
     description: 'My super blog',
     author: 'Strapi team',
-    title: 'mimigon'
+    title: 'Mimigon'
   },
   plugins: [
     'gatsby-plugin-theme-ui',
