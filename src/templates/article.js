@@ -58,7 +58,7 @@ const Page = ({ data }) => {
   return (
     <Layout
     >
-      {data.strapiArticle.image && <Hero image={data.strapiArticle.image.childImageSharp.fluid} slim color={bgColor} >
+      {data.strapiArticle.image && <Hero image={data.strapiArticle.image.childImageSharp.fluid} color={bgColor} >
         <Flex
           sx={{
             position: `absolute`,
@@ -82,18 +82,22 @@ const Page = ({ data }) => {
                 // borderColor: 'primary'
                 // boxShadow: '0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -2px rgba(0,0,0,.05)'
               }}
-              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
               {
                 data.strapiArticle.author.avatar && <Img style={{ width: 70, height: 70, borderRadius: 9999 }} fixed={data.strapiArticle.author.avatar.childImageSharp.fixed} />
               }
+
+
               {/* <div style={{ display: 'flex', flexDirection: 'column', marginLeft: 20 }}>
                 <div>{data.strapiArticle.author.username}</div>
                 <i>{data.strapiArticle.author.description}</i>
               </div> */}
-
             </div>
             <Styled.h1>{data.strapiArticle.title}</Styled.h1>
-
+            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1rem'}}>
+              <blockquote sx={{ fontSize: '1.2rem', margin: '0 0 0 1.45rem',  }}>{data.strapiArticle.description}</blockquote>
+              <div sx={{marginRight: '1.45rem'}}>发布于: {data.strapiArticle.updated_at.split('T')[0]}</div>
+            </div>
           </animated.div>
         </Flex>
       </Hero>
@@ -107,6 +111,7 @@ const Page = ({ data }) => {
             escapeHtml={false}
             renderers={{ code: CodeBlock }}
           />
+          <div></div>
         </animated.div>
       </Container>
     </Layout>
@@ -119,6 +124,9 @@ export const query = graphql`
     strapiArticle(id: { eq: $id }) {
       title
       content
+      description
+      created_at
+      updated_at
       image {
         childImageSharp {
           fluid(maxWidth: 960) {
