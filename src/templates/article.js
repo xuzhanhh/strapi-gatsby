@@ -83,9 +83,7 @@ const Page = ({ data }) => {
                 // boxShadow: '0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -2px rgba(0,0,0,.05)'
               }}
               style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-              {
-                data.strapiArticle.author.avatar && <Img style={{ width: 70, height: 70, borderRadius: 9999 }} fixed={data.strapiArticle.author.avatar.childImageSharp.fixed} />
-              }
+
 
 
               {/* <div style={{ display: 'flex', flexDirection: 'column', marginLeft: 20 }}>
@@ -94,9 +92,19 @@ const Page = ({ data }) => {
               </div> */}
             </div>
             <Styled.h1>{data.strapiArticle.title}</Styled.h1>
-            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1rem'}}>
-              <blockquote sx={{ fontSize: '1.2rem', margin: '0 0 0 1.45rem',  }}>{data.strapiArticle.description}</blockquote>
-              <div sx={{marginRight: '1.45rem'}}>发布于: {data.strapiArticle.updated_at.split('T')[0]}</div>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1rem' }}>
+              <blockquote sx={{ fontSize: '1.2rem', margin: '0 0 0 1.45rem', }}>{data.strapiArticle.description}</blockquote>
+              <div sx={{ display: 'flex', alignItems: 'center' }}>
+                {
+                  data.strapiArticle.author.avatar && <Img style={{ width: 70, height: 70, borderRadius: 9999 }} fixed={data.strapiArticle.author.avatar.childImageSharp.fixed} />
+                }
+                <div style={{marginLeft: 20 }}>
+                  <div sx={{ marginRight: '1.45rem' }}>发布时间: {data.strapiArticle.created_at.split('T')[0]}</div>
+                  <div sx={{ marginRight: '1.45rem' }}>修改时间: {data.strapiArticle.updated_at.split('T')[0]}</div>
+                </div>
+
+              </div>
+
             </div>
           </animated.div>
         </Flex>
