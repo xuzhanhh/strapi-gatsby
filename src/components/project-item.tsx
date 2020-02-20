@@ -111,7 +111,8 @@ const ProjectItem = ({ node, style }: Props) => {
               zIndex: -2,
             }}
           />
-          <div sx={{ fontSize: 5, fontWeight: `bold` }}>{node.title}</div>
+          <div sx={{ fontSize: 3, fontWeight: `bold` }}>{node.title}</div>
+          <div sx={{ fontSize: 1 }}>{node.description}</div>
           {/* <div sx={{ fontSize: 2 }}>{node.content}</div> */}
         </Link>
       </div>

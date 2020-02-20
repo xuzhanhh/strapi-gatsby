@@ -46,6 +46,7 @@ query IndexSectionQuery($id: String!) {
   strapiSection(id: {eq: $id}) {
     id
     title
+    description
     articles {
       id
       image {
