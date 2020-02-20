@@ -21,9 +21,9 @@ type Props = {
 const ProjectItem = ({ node, style }: Props) => {
   // console.log(node.image && node.image.childImageSharp.fluid)
   const [bgColor, setBgColor] = React.useState(null);
-  React.useEffect(()=>{
-    if(node.image) {
-      getAverageRGBFromImgsrc(node.image.childImageSharp.fluid.src).then(data => {setBgColor(`#${rgbToHex(data.r)}${rgbToHex(data.g)}${rgbToHex(data.b)}`)})
+  React.useEffect(() => {
+    if (node.image) {
+      getAverageRGBFromImgsrc(node.image.childImageSharp.fluid.src).then(data => { setBgColor(`#${rgbToHex(data.r)}${rgbToHex(data.g)}${rgbToHex(data.b)}`) })
     }
   }, [])
 
@@ -80,9 +80,9 @@ const ProjectItem = ({ node, style }: Props) => {
             },
           }}
         >
-          {node.image  && <Img fluid={node.image.childImageSharp.fluid} />}
+          {node.image && <Img fluid={node.image.childImageSharp.fluid} />}
         </div>
-        <Link to={`/${node.section.title}/${node.strapiId || node.id}`} aria-label={`View detail page of ${node.title}`}>
+        <Link to={`/${node.section.title}/${10000 + (node.strapiId || node.id)}`} aria-label={`View detail page of ${node.title}`}>
           <img
             alt=""
             src={node.image && node.image.childImageSharp.fluid.tracedSVG}
