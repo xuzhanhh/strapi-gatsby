@@ -4,6 +4,7 @@ import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import Layout from '../components/new-layout'
 import ReactMarkdown from "react-markdown"
+import { Helmet } from "react-helmet";
 import { animated, useSpring, config } from "react-spring"
 import { Container, Styled, jsx, Flex, useColorMode } from "theme-ui"
 import Hero from '../components/hero';
@@ -58,6 +59,10 @@ const Page = ({ data }) => {
   return (
     <Layout
     >
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{data.strapiArticle.title}</title>
+      </Helmet>
       {data.strapiArticle.image && <Hero image={data.strapiArticle.image.childImageSharp.fluid} color={bgColor} >
         <Flex
           sx={{
@@ -98,7 +103,7 @@ const Page = ({ data }) => {
                 {
                   data.strapiArticle.author.avatar && <Img style={{ width: 70, height: 70, borderRadius: 9999 }} fixed={data.strapiArticle.author.avatar.childImageSharp.fixed} />
                 }
-                <div style={{marginLeft: 20 }}>
+                <div style={{ marginLeft: 20 }}>
                   <div sx={{ marginRight: '1.45rem' }}>发布时间: {data.strapiArticle.created_at.split('T')[0]}</div>
                   <div sx={{ marginRight: '1.45rem' }}>修改时间: {data.strapiArticle.updated_at.split('T')[0]}</div>
                 </div>

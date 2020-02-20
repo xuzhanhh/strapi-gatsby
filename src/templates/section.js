@@ -2,7 +2,7 @@
 import { jsx, Container, Styled } from "theme-ui"
 import React from "react"
 import { Link } from "gatsby"
-
+import { Helmet } from "react-helmet";
 import Layout from "../components/layout"
 import Image from "gatsby-image"
 import SEO from "../components/seo"
@@ -27,8 +27,12 @@ const IndexPage = ({ data }) => {
         // height: '100vh'
       }}
     >
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{data.strapiSection.title}</title>
+      </Helmet>
       {data.strapiSection.articles.map(document => (
-        <ProjectItem node={{...document, section: {title: data.strapiSection.title, id: data.strapiSection.id}}} />
+        <ProjectItem node={{ ...document, section: { title: data.strapiSection.title, id: data.strapiSection.id } }} />
       ))}
     </NewLayout>
     //   </ul>

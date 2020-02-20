@@ -4,6 +4,7 @@ import { Link } from "gatsby"
 import Navigation from "./navigation"
 import SocialLinks from "./social-links"
 import Logo from '../assets/mimigon.png';
+import { Helmet } from 'react-helmet';
 type MetaType = {
   meta: {
     [key: string]: string
@@ -26,6 +27,10 @@ const Header = ({ meta, nav }: MetaType) => {
   return (
     <ThemeHeader>
       {!navEmpty && <Navigation nav={nav} />}
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{meta.title}</title>
+      </Helmet>
       <div
         sx={{
           fontWeight: `bold`,
