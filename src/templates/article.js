@@ -13,6 +13,8 @@ import "../styles/global.css";
 import { getAverageRGBFromImgsrc, rgbToHex } from '../utils'
 import { borderColor } from 'polished'
 import { tailwind } from "@theme-ui/presets";
+import Markdown from '../components/markdown';
+
 // const ArticleTemplate = ({ data }) => (
 //   <Layout>
 //     <h1>{data.strapiArticle.title}</h1>
@@ -43,12 +45,7 @@ const Page = ({ data }) => {
   function Image(props) {
     return <img {...props} style={{ maxWidth: '100%' }} />
   }
-  const transformArticle = (data) => {
-    const ret = data.replaceAll(/<img src=\"https:\/\/res.cloudinary.com\/dfafucj5l\/image\/upload\/v\d+\/ac\/(.*?).png" \/>/, (...data) => {
-      return data[0].substr(0, data[0].length - 2) + `style="width:70px; filter:invert(${isDark ? 0.9 : 0})" />`
-    })
-    return ret
-  }
+
   console.log(data)
   const [bgColor, setBgColor] = React.useState(null);
   React.useEffect(() => {
@@ -117,14 +114,15 @@ const Page = ({ data }) => {
       }
       <Container>
         <animated.div style={contentProps}>
-          <ReactMarkdown
+        <Markdown data={data.strapiArticle.content} />
+          {/* <ReactMarkdown
             renderers={{ image: Image }}
             source={transformArticle(data.strapiArticle.content)}
             transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
             escapeHtml={false}
             renderers={{ code: CodeBlock }}
-          />
-          <div></div>
+          /> */}
+          {/* <div></div> */}
         </animated.div>
       </Container>
     </Layout>

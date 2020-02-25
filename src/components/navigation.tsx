@@ -32,6 +32,13 @@ const Navigation = ({ nav }: Props) => (
         {n.title}
       </Styled.a>
     ))}
+    <Styled.a
+      as={Link}
+      sx={{ color: `text`, ":hover": { color: `primary`, textDecoration: `none` } }}
+      to={'/about'}
+    >
+      关于
+        </Styled.a>
   </Flex>
 )
 

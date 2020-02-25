@@ -71,6 +71,7 @@ const Header = ({ meta, nav }: MetaType) => {
         }}
       >
         <SocialLinks />
+      
         <button
           sx={{ variant: `buttons.toggle`, fontWeight: `semibold` }}
           onClick={toggleColorMode}

@@ -7,9 +7,9 @@ import Footer from "./footer"
 import Header from "./header"
 import SEO from "./seo"
 
-type LayoutProps = { children: React.ReactNode; className?: string }
+type LayoutProps = { children: React.ReactNode; className?: string; noFooter: boolean }
 
-const NewLayout = ({ children, className }: LayoutProps) => {
+const NewLayout = ({ children, className, noFooter = false }: LayoutProps) => {
   const meta = useSiteMetadata()
   const nav = useNavigation()
   const [colorMode, setColorMode] = useColorMode()
@@ -20,30 +20,42 @@ const NewLayout = ({ children, className }: LayoutProps) => {
         styles={css({
           "*": {
             boxSizing: `inherit`,
+            "&:before": {
+              boxSizing: `inherit`,
+            },
+            "&:after": {
+              boxSizing: `inherit`,
+            },
           },
           body: {
             margin: 0,
             padding: 0,
             boxSizing: `border-box`,
             textRendering: `optimizeLegibility`,
+            WebkitFontSmoothing: `antialiased`,
+            MozOsxFontSmoothing: `grayscale`,
           },
           "::selection": {
             backgroundColor: `primary`,
             color: `background`,
           },
           hr: {
-            background: isDark? 'hsla(100, 0%, 62%, 0.8)': 'hsla(0, 0%, 0%, 0.2)',
+            background: isDark ? 'hsla(100, 0%, 62%, 0.8)' : 'hsla(0, 0%, 0%, 0.2)',
           },
           a: {
             transition: `all 0.3s ease-in-out`,
           },
         })}
       />
-      <div style={{ minHeight: '100vh' }}>
+      {/* <div style={{ minHeight: '100vh' }}> */}
+      <div style={{display: 'flex', flexDirection: 'column', minHeight: '100vh'}}>
         {/* <SEO /> */}
         <Header meta={meta} nav={nav} />
-        <Main className={className}>{children}</Main>
-        <Footer />
+        {/* <Main className={className}>{children}</Main> */}
+        {/* <Main className={className}>{children}</Main> */}
+        {children}
+        {!noFooter && <Footer />}
+
       </div>
     </Styled.root>
   )

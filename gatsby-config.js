@@ -28,6 +28,7 @@ module.exports = {
           'article',
           'user',
           'section',
+          'about'
         ],
         queryLimit: 1000,
       },
@@ -37,8 +38,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'gatsby-starter-default',
-        short_name: 'starter',
+        name: 'mimigon',
+        short_name: 'mimigon',
         start_url: '/',
         background_color: '#663399',
         theme_color: '#663399',
