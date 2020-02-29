@@ -20,16 +20,18 @@ const IndexPage = ({ data }) => {
     //   <p>Now go build something great.</p>
     //   <ul>
     <NewLayout
-      sx={{
+
+    >
+      <div sx={{
         display: `grid`,
         gridTemplateColumns: `repeat(auto-fit, minmax(280px, 1fr))`,
         width: `100%`,
         // height: '100vh'
-      }}
-    >
-      {data.allStrapiArticle.edges.map(document => (
-        <ProjectItem node={document.node} />
-      ))}
+      }}>
+        {data.allStrapiArticle.edges.map(document => (
+          <ProjectItem node={document.node} />
+        ))}
+      </div>
     </NewLayout>
     //   </ul>
     //   <Link to="/page-2/">Go to page 2</Link>

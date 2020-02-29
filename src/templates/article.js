@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React from 'react'
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react'
 import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import Layout from '../components/new-layout'
@@ -9,6 +9,7 @@ import { animated, useSpring, config } from "react-spring"
 import { Container, Styled, jsx, Flex, useColorMode } from "theme-ui"
 import Hero from '../components/hero';
 import CodeBlock from '../components/code-block';
+import Sticky from '../components/sticky';
 import "../styles/global.css";
 import { getAverageRGBFromImgsrc, rgbToHex } from '../utils'
 import { borderColor } from 'polished'
@@ -35,6 +36,15 @@ String.prototype.replaceAll = function (search, replacement) {
 
 const Page = ({ data }) => {
   const [colorMode, setColorMode] = useColorMode()
+  const [titleList, setTitleList] = useState([]);
+  const addTitleList = (newItem) => {
+    if (titleList.filter(item => item.key === newItem.key).length === 0) {
+      setTitleList(origin => {
+        origin.push(newItem)
+        return [...origin]
+      })
+    }
+  }
   const isDark = colorMode === `dark`
   const titleProps = useSpring({
     config: config.slow,
@@ -42,17 +52,32 @@ const Page = ({ data }) => {
     to: { opacity: 1, transform: `translate3d(0, 0, 0)` },
   })
   const contentProps = useSpring({ config: config.slow, delay: 1000, from: { opacity: 0 }, to: { opacity: 1 } })
-  function Image(props) {
-    return <img {...props} style={{ maxWidth: '100%' }} />
-  }
 
-  console.log(data)
   const [bgColor, setBgColor] = React.useState(null);
   React.useEffect(() => {
     if (data.strapiArticle.image) {
       getAverageRGBFromImgsrc(data.strapiArticle.image.childImageSharp.fluid.src).then(data => { setBgColor(`#${rgbToHex(data.r)}${rgbToHex(data.g)}${rgbToHex(data.b)}`) })
     }
   }, [])
+  console.log('titleList', titleList);
+  // const [titleLinkFixed, changeTitleLinkFixed] = useState(false);
+
+  // const titleLinkRef = useRef();
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver((data) => {
+  //     const { isIntersecting, isVisible } = data[0]
+  //     console.log('!!!!', isIntersecting, isVisible)
+  //     changeTitleLinkFixed(isIntersecting)
+  //   }, {
+  //     threshold: 1,
+  //     rootMargin: '-30px 0px 99999999px 0px'
+  //   });
+  //   observer.observe(titleLinkRef.current)
+  //   return () => {
+  //     observer.unobserve(titleLinkRef.current);
+  //   }
+  // }, []);
+
   return (
     <Layout
     >
@@ -112,9 +137,45 @@ const Page = ({ data }) => {
         </Flex>
       </Hero>
       }
-      <Container>
+      <Container sx={{ width: '70%', position: 'relative', }}>
         <animated.div style={contentProps}>
-        <Markdown data={data.strapiArticle.content} />
+
+          <div sx={{ position: 'absolute', left: '-12vw', top: '4rem', }}>
+            <Sticky>
+              {
+                ({ style }) => {
+                  return (
+                    <div id="test" style={{ ...style, width: '10rem', paddingTop: '3rem' }} >
+                      {
+                        titleList.map(title => {
+                          return (
+                            <div
+                              key={title.key}
+                              onClick={() => { window.location.hash = title.name }}
+                              sx={{
+                                cursor: 'pointer',
+                                "&:hover": {
+                                  color: `primary`,
+                                },
+                                marginBottom: '0.3rem',
+                                // marginTop: '1rem',
+                                marginLeft: `${(title.level - 1) * 1.2}rem`
+
+                              }}
+                            >
+                              {title.name}
+                            </div>
+                          )
+                        })
+                      }
+                    </div>
+                  )
+                }
+              }
+            </Sticky>
+          </div>
+          <Markdown data={data.strapiArticle.content} addTitleList={addTitleList} />
+
           {/* <ReactMarkdown
             renderers={{ image: Image }}
             source={transformArticle(data.strapiArticle.content)}

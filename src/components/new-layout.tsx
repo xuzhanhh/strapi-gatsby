@@ -14,6 +14,7 @@ const NewLayout = ({ children, className, noFooter = false }: LayoutProps) => {
   const nav = useNavigation()
   const [colorMode, setColorMode] = useColorMode()
   const isDark = colorMode === `dark`
+  console.log('className', className);
   return (
     <Styled.root data-testid="theme-root">
       <Global

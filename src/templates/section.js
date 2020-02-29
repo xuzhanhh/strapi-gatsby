@@ -20,20 +20,22 @@ const IndexPage = ({ data }) => {
     //   <p>Now go build something great.</p>
     //   <ul>
     <NewLayout
-      sx={{
+    >
+      {/* <Helmet>
+          <meta charSet="utf-8" />
+          <title>{data.strapiSection.title}</title>
+        </Helmet> */}
+      <div sx={{
         display: `grid`,
         gridTemplateColumns: `repeat(auto-fit, minmax(280px, 1fr))`,
         width: `100%`,
         // height: '100vh'
-      }}
-    >
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>{data.strapiSection.title}</title>
-      </Helmet>
-      {data.strapiSection.articles.map(document => (
-        <ProjectItem node={{ ...document, section: { title: data.strapiSection.title, id: data.strapiSection.id } }} />
-      ))}
+      }}>
+
+        {data.strapiSection.articles.map(document => (
+          <ProjectItem node={{ ...document, section: { title: data.strapiSection.title, id: data.strapiSection.id } }} />
+        ))}
+      </div>
     </NewLayout>
     //   </ul>
     //   <Link to="/page-2/">Go to page 2</Link>
