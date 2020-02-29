@@ -3,7 +3,8 @@ import { Header as ThemeHeader, jsx, useColorMode, Styled } from "theme-ui"
 import { Link } from "gatsby"
 import Navigation from "./navigation"
 import SocialLinks from "./social-links"
-import Logo from '../assets/mimigon.png';
+import Logo from '../assets/mimigonlogo_raw.png';
+import LogoLine from '../assets/mimigonlogo_line.png';
 import { Helmet } from 'react-helmet';
 type MetaType = {
   meta: {
@@ -47,7 +48,7 @@ const Header = ({ meta, nav }: MetaType) => {
           sx={{ display: 'flex', color: `text`, ":hover": { color: `primary`, textDecoration: `none` } }}
           to="/"
         >
-          {meta.title}<img src={Logo} style={{ width: 50, marginBottom: 0 }} />
+          {meta.title}<img src={isDark ? LogoLine : Logo} style={{ width: 50, marginBottom: 0, filter: `contrast(${isDark ? 0 : 1}) brightness(${isDark ? 2 : 1})` }} />
         </Styled.a>
       </div>
       <div
@@ -71,7 +72,7 @@ const Header = ({ meta, nav }: MetaType) => {
         }}
       >
         <SocialLinks />
-      
+
         <button
           sx={{ variant: `buttons.toggle`, fontWeight: `semibold` }}
           onClick={toggleColorMode}

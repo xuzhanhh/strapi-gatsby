@@ -16,7 +16,11 @@ const NewLayout = ({ children, className, noFooter = false }: LayoutProps) => {
   const isDark = colorMode === `dark`
   console.log('className', className);
   return (
-    <Styled.root data-testid="theme-root">
+    <Styled.root data-testid="theme-root" sx={{
+      height: '100vh',
+      overflow: 'auto',
+      scrollBehavior: 'smooth',
+    }}>
       <Global
         styles={css({
           "*": {
@@ -49,7 +53,7 @@ const NewLayout = ({ children, className, noFooter = false }: LayoutProps) => {
         })}
       />
       {/* <div style={{ minHeight: '100vh' }}> */}
-      <div style={{display: 'flex', flexDirection: 'column', minHeight: '100vh'}}>
+      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', overflow: 'auto' }}>
         {/* <SEO /> */}
         <Header meta={meta} nav={nav} />
         {/* <Main className={className}>{children}</Main> */}
