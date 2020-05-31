@@ -37,14 +37,23 @@ String.prototype.replaceAll = function (search, replacement) {
 const Page = ({ data }) => {
   const [colorMode, setColorMode] = useColorMode()
   const [titleList, setTitleList] = useState([]);
-  const addTitleList = (newItem) => {
+  const [activeTitle, _setActiveTitle] = useState(null);
+  const setActiveTitle = React.useCallback((name, offset) => {
+    if(typeof offset === 'number') {
+     const newName = titleList[Math.max(titleList.findIndex( item => item.name === name) + offset, 0)].name
+     _setActiveTitle(newName)
+      return;
+    }
+    _setActiveTitle(name)
+  }, [titleList])
+  const addTitleList = React.useCallback((newItem) => {
     if (titleList.filter(item => item.key === newItem.key).length === 0) {
       setTitleList(origin => {
         origin.push(newItem)
         return [...origin]
       })
     }
-  }
+  }, [titleList])
   const isDark = colorMode === `dark`
   const titleProps = useSpring({
     config: config.slow,
@@ -77,6 +86,12 @@ const Page = ({ data }) => {
   //     observer.unobserve(titleLinkRef.current);
   //   }
   // }, []);
+  const content = React.useMemo(()=>{
+   return  <Markdown data={data.strapiArticle.content} addTitleList={addTitleList} setActiveTitle={setActiveTitle} />
+
+  }, [data.strapiArticle.content, addTitleList])
+
+console.log('active', activeTitle)
 
   return (
     <Layout
@@ -151,7 +166,7 @@ const Page = ({ data }) => {
                           return (
                             <div
                               key={title.key}
-                              onClick={() => { window.location.hash = title.name }}
+                              onClick={() => { setTimeout(() =>setActiveTitle(title.name), 100); window.location.hash = title.name }}
                               sx={{
                                 cursor: 'pointer',
                                 "&:hover": {
@@ -159,8 +174,9 @@ const Page = ({ data }) => {
                                 },
                                 marginBottom: '0.3rem',
                                 // marginTop: '1rem',
-                                marginLeft: `${(title.level - 1) * 1.2}rem`
-
+                                transition: 'all 0.2s',
+                                marginLeft: `${(title.level - 1) * 1.2}rem`,
+                                color: activeTitle === title.name ? `primary`: null
                               }}
                             >
                               {title.name}
@@ -174,8 +190,7 @@ const Page = ({ data }) => {
               }
             </Sticky>
           </div>
-          <Markdown data={data.strapiArticle.content} addTitleList={addTitleList} />
-
+          {content}
           {/* <ReactMarkdown
             renderers={{ image: Image }}
             source={transformArticle(data.strapiArticle.content)}

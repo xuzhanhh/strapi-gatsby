@@ -39,6 +39,7 @@ const NewLayout = ({ children, className, noFooter = false }: LayoutProps) => {
             textRendering: `optimizeLegibility`,
             WebkitFontSmoothing: `antialiased`,
             MozOsxFontSmoothing: `grayscale`,
+            scrollBehavior: 'smooth',
           },
           "::selection": {
             backgroundColor: `primary`,
