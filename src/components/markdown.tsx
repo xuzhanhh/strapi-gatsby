@@ -23,7 +23,7 @@ const Markdown = ({ data, addTitleList, setActiveTitle }) => {
     const titleProps = {
       name: children?.[0]?.props?.children
     }
-    console.log(props)
+    // console.log(props)
     const ref = React.useRef();
     const data = useIntersection(ref, { threshold: 0.1})
     React.useEffect(()=>{
@@ -35,7 +35,7 @@ const Markdown = ({ data, addTitleList, setActiveTitle }) => {
         setActiveTitle(children?.[0]?.props?.children, -1)
       }
     }, [data])
-    console.log('data', data)
+    // console.log('data', data)
     addTitleList && addTitleList({ level, key: children?.[0]?.key, name: children?.[0]?.props?.children })
     switch (level) {
       case 1: return <h1 ref={ref} {...titleProps}>{children}</h1>

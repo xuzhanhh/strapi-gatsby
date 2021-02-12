@@ -6,7 +6,7 @@ import Layout from '../components/new-layout'
 import ReactMarkdown from "react-markdown"
 import { Helmet } from "react-helmet";
 import { animated, useSpring, config } from "react-spring"
-import { Container, Styled, jsx, Flex, useColorMode } from "theme-ui"
+import { Container, Styled, jsx, Flex, useColorMode, useThemeUI } from "theme-ui"
 import Hero from '../components/hero';
 import CodeBlock from '../components/code-block';
 import Sticky from '../components/sticky';
@@ -35,6 +35,7 @@ String.prototype.replaceAll = function (search, replacement) {
 };
 
 const Page = ({ data }) => {
+  const { theme } = useThemeUI()
   const [colorMode, setColorMode] = useColorMode()
   const [titleList, setTitleList] = useState([]);
   const [activeTitle, _setActiveTitle] = useState(null);
@@ -93,6 +94,7 @@ const Page = ({ data }) => {
 
 console.log('active', activeTitle)
 
+  console.log('theme', theme)
   return (
     <Layout
     >
@@ -137,17 +139,24 @@ console.log('active', activeTitle)
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1rem' }}>
               <blockquote sx={{ fontSize: '1.2rem', margin: '0 0 0 1.45rem', }}>{data.strapiArticle.description}</blockquote>
               <div sx={{ display: 'flex', alignItems: 'center' }}>
-                {
-                  data.strapiArticle.author.avatar && <Img style={{ width: 70, height: 70, borderRadius: 9999 }} fixed={data.strapiArticle.author.avatar.childImageSharp.fixed} />
-                }
                 <div style={{ marginLeft: 20 }}>
                   <div sx={{ marginRight: '1.45rem' }}>发布时间: {data.strapiArticle.created_at.split('T')[0]}</div>
                   <div sx={{ marginRight: '1.45rem' }}>修改时间: {data.strapiArticle.updated_at.split('T')[0]}</div>
                 </div>
-
               </div>
-
             </div>
+            {
+              (data.strapiArticle.score_desc || data.strapiArticle.score) && <div className="border-gray-500 bg-white  mt-6 rounded-xl px-8 py-4 flex items-center shadow" style={{ color: theme.colors.gray[8] }}>
+                <div>
+                  {
+                    data.strapiArticle.author.avatar && <Img style={{ width: 70, height: 70, borderRadius: 9999 }} fixed={data.strapiArticle.author.avatar.childImageSharp.fixed} />
+                  }
+                </div>
+                <div className="flex-1 ml-4 text-xl">「{data.strapiArticle.score_desc}」</div>
+                <div className="text-6xl pl-8">{data.strapiArticle.score}</div>
+              </div>
+            }
+
           </animated.div>
         </Flex>
       </Hero>
@@ -214,6 +223,8 @@ export const query = graphql`
       description
       created_at
       updated_at
+      score
+      score_desc
       image {
         childImageSharp {
           fluid(maxWidth: 960) {

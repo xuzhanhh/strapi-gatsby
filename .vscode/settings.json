@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    "*.graphql": "graphql",
+    "*.ttml": "xml",
+    "*.ttss": "css"
+  }
+}

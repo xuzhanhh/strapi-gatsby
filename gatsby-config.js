@@ -11,6 +11,7 @@ module.exports = {
     'gatsby-plugin-theme-ui',
     'gatsby-plugin-typescript',
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-postcss',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
