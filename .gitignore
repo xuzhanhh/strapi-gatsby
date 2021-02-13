@@ -68,6 +68,6 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 package-lock.json
-yarn.lock
+# yarn.lock
 # Local Netlify folder
 .netlify
