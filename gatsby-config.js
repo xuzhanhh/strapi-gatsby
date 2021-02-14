@@ -1,3 +1,4 @@
+// require("dotenv").config()
 module.exports = {
   siteMetadata: {
     titleAlt: 'My super blog',
@@ -49,13 +50,13 @@ module.exports = {
       },
     },
     'gatsby-plugin-offline',
-    // {
-    //   resolve: `gatsby-plugin-algolia`,
-    //   options: {
-    //     appId: process.env.GATSBY_ALGOLIA_APP_ID,
-    //     apiKey: process.env.ALGOLIA_ADMIN_KEY,
-    //     queries: require("./src/utils/algolia-queries")
-    //   },
-    // }
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: 'QEOOUNYNM3',
+        apiKey: '6cd9e2ec519298e746e0d3bbd7f90205',
+        queries: require("./src/utils/algolia-queries")
+      },
+    }
   ],
 }

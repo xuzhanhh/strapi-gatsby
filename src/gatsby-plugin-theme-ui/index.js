@@ -85,7 +85,7 @@ export default {
     Header: {
       px: [3, 4],
       py: [2, 3],
-      fontSize: 2,
+      fontSize: 1,
       display: `flex`,
       alignItems: `center`,
       flexWrap: `wrap`,
