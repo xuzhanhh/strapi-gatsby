@@ -10,3 +10,37 @@
 .indexArticle img {
   display: none;
 }
+
+.ReactModal__Overlay {
+  z-index: 10000;
+  background: rgba(0,0,0,.25) !important;
+}
+
+*:focus {
+  outline: none;
+}
+
+.ais-PoweredBy {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 0.75rem;
+}
+
+.ais-PoweredBy svg {
+  height: 18px;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+.ais-PoweredBy-text {
+  margin-left: 10px;
+}
+
+.ais-Hits-list {
+  margin-left: 0px;
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}

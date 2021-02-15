@@ -6,6 +6,8 @@ import SocialLinks from "./social-links"
 import Logo from '../assets/mimigonlogo_raw.png';
 import LogoLine from '../assets/mimigonlogo_line.png';
 import { Helmet } from 'react-helmet';
+import { SearchModal } from './search'
+// import { SearchProvider } from './search/useSearch'
 type MetaType = {
   meta: {
     [key: string]: string
@@ -15,7 +17,6 @@ type MetaType = {
     slug: string
   }[]
 }
-
 const Header = ({ meta, nav }: MetaType) => {
   const [colorMode, setColorMode] = useColorMode()
   const isDark = colorMode === `dark`
@@ -51,6 +52,7 @@ const Header = ({ meta, nav }: MetaType) => {
           {meta.title}<img src={isDark ? LogoLine : Logo} style={{ width: 50, marginBottom: 0, filter: `contrast(${isDark ? 0 : 1}) brightness(${isDark ? 2 : 1})` }} />
         </Styled.a>
       </div>
+
       <div
         sx={{
           a: {
@@ -71,7 +73,9 @@ const Header = ({ meta, nav }: MetaType) => {
           order: 3,
         }}
       >
-        <SocialLinks />
+        <SearchModal />
+        {/* <SearchProvider> </SearchProvider> */}
+        {/* <SocialLinks /> */}
 
         <button
           sx={{ variant: `buttons.toggle`, fontWeight: `semibold` }}

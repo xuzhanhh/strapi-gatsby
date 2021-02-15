@@ -13,7 +13,7 @@ const Navigation = ({ nav }: Props) => (
   <Flex
     as="nav"
     sx={{
-      flex: 1,
+      // flex: 1,
       justifyContent: `flex-start`,
       order: [2, 1],
       "a:not(:last-of-type)": {
@@ -32,13 +32,13 @@ const Navigation = ({ nav }: Props) => (
         {n.title}
       </Styled.a>
     ))}
-    <Styled.a
+    {/* <Styled.a
       as={Link}
       sx={{ color: `text`, ":hover": { color: `primary`, textDecoration: `none` } }}
       to={'/about'}
     >
       关于
-        </Styled.a>
+        </Styled.a> */}
   </Flex>
 )
 
