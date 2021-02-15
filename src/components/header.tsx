@@ -67,7 +67,7 @@ const Header = ({ meta, nav }: MetaType) => {
               ml: 2,
             },
           },
-          justifyContent: `space-between`,
+          justifyContent: `flex-end`,
           flex: 1,
           display: `flex`,
           order: 3,

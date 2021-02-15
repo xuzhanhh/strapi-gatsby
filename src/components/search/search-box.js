@@ -12,6 +12,7 @@ export default connectSearchBox(
         onChange={e => refine(e.target.value)}
         value={currentRefinement}
         onFocus={onFocus}
+        autoFocus
       />
       <div
         className="flex items-center justify-center w-8 h-1/2 bg-gray-50 rounded-md border-gray-300 text-sm text-gray-400 cursor-pointer"

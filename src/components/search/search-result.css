@@ -1,0 +1,9 @@
+.search-result:hover .ais-Highlight-highlighted {
+  color: white;
+  text-decoration: underline;
+}
+
+.search-result .ais-Highlight-highlighted {
+  color: rgba(219, 39, 119, var(--tw-bg-opacity));
+  background-color: inherit!important;
+}
