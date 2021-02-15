@@ -49,7 +49,7 @@ module.exports = {
         icon: 'src/assets/mimigonlogo_raw.png', // This path is relative to the root of the site.
       },
     },
-    'gatsby-plugin-offline',
+    `gatsby-plugin-remove-serviceworker`,
     {
       resolve: `gatsby-plugin-algolia`,
       options: {
