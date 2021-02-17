@@ -49,7 +49,7 @@ const Header = ({ meta, nav }: MetaType) => {
           sx={{ display: 'flex', color: `text`, ":hover": { color: `primary`, textDecoration: `none` } }}
           to="/"
         >
-          {meta.title}<img src={isDark ? LogoLine : Logo} style={{ width: 50, marginBottom: 0, filter: `contrast(${isDark ? 0 : 1}) brightness(${isDark ? 2 : 1})` }} />
+          {meta.title}<img src={isDark ? LogoLine : Logo} style={{ width: 50, height: 54, marginBottom: 0, filter: `contrast(${isDark ? 0 : 1}) brightness(${isDark ? 2 : 1})` }} />
         </Styled.a>
       </div>
 
