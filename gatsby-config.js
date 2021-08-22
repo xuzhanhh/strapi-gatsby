@@ -24,7 +24,7 @@ module.exports = {
       resolve: '@xuzhanhh/gatsby-source-strapi',
       options: {
         apiURL: process.env.DEPLOY_URL
-          ? "http://3.113.13.44:1337"
+          ? "http://admin.mimigon.com"
           : "http://localhost:1337",
         contentTypes: [ // List of the Content Types you want to be able to request from Gatsby.
           'article',
