@@ -36,19 +36,25 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-firebase",
+      resolve: `gatsby-plugin-google-gtag`,
       options: {
-        credentials: {
-          apiKey: "AIzaSyALqWSyST0vAR_1UFsezLavGa2uszKuyzA",
-          authDomain: "mimigon-site.firebaseapp.com",
-          projectId: "mimigon-site",
-          storageBucket: "mimigon-site.appspot.com",
-          messagingSenderId: "903770035904",
-          appId: "1:903770035904:web:8d4ad990df0c141fcfbf25",
-          measurementId: "G-MH03DSZDN3"
-        }
+        trackingIds: ['G-MH03DSZDN3']
       }
     },
+    // {
+    //   resolve: "gatsby-plugin-firebase",
+    //   options: {
+    //     credentials: {
+    //       apiKey: "AIzaSyALqWSyST0vAR_1UFsezLavGa2uszKuyzA",
+    //       authDomain: "mimigon-site.firebaseapp.com",
+    //       projectId: "mimigon-site",
+    //       storageBucket: "mimigon-site.appspot.com",
+    //       messagingSenderId: "903770035904",
+    //       appId: "1:903770035904:web:8d4ad990df0c141fcfbf25",
+    //       measurementId: "G-MH03DSZDN3"
+    //     }
+    //   }
+    // },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {
