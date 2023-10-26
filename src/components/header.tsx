@@ -3,10 +3,9 @@ import { Header as ThemeHeader, jsx, useColorMode, Styled } from "theme-ui"
 import { Link } from "gatsby"
 import Navigation from "./navigation"
 import SocialLinks from "./social-links"
-import Logo from '../assets/mimigonlogo_raw.png';
-import LogoLine from '../assets/mimigonlogo_line.png';
-import { Helmet } from 'react-helmet';
-import { SearchModal } from './search'
+import Logo from "../assets/mimigonlogo_raw.png"
+import LogoLine from "../assets/mimigonlogo_line.png"
+import { Helmet } from "react-helmet"
 // import { SearchProvider } from './search/useSearch'
 type MetaType = {
   meta: {
@@ -46,10 +45,25 @@ const Header = ({ meta, nav }: MetaType) => {
         <Styled.a
           aria-label={`${meta.title}, Back to homepage`}
           as={Link}
-          sx={{ display: 'flex', color: `text`, ":hover": { color: `primary`, textDecoration: `none` } }}
+          sx={{
+            display: "flex",
+            color: `text`,
+            ":hover": { color: `primary`, textDecoration: `none` },
+          }}
           to="/"
         >
-          {meta.title}<img src={isDark ? LogoLine : Logo} style={{ width: 50, height: 54, marginBottom: 0, filter: `contrast(${isDark ? 0 : 1}) brightness(${isDark ? 2 : 1})` }} />
+          {meta.title}
+          <img
+            src={isDark ? LogoLine : Logo}
+            style={{
+              width: 50,
+              height: 54,
+              marginBottom: 0,
+              filter: `contrast(${isDark ? 0 : 1}) brightness(${
+                isDark ? 2 : 1
+              })`,
+            }}
+          />
         </Styled.a>
       </div>
 
@@ -73,7 +87,6 @@ const Header = ({ meta, nav }: MetaType) => {
           order: 3,
         }}
       >
-        <SearchModal />
         {/* <SearchProvider> </SearchProvider> */}
         {/* <SocialLinks /> */}
 
